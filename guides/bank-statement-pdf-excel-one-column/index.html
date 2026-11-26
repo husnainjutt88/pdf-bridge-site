@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bank Statement PDF Pastes Into One Column in Excel? How to Fix It | PDF Bridge</title>
+<meta name="description" content="Why a bank statement copied from a PDF lands in one column, splits rows or turns amounts into text in Excel, and how to fix each problem.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://pdfbridge.app/guides/bank-statement-pdf-excel-one-column/">
+<meta name="theme-color" content="#121B48">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PDF Bridge">
+<meta property="og:title" content="Bank Statement PDF Pastes Into One Column in Excel? How to Fix It | PDF Bridge">
+<meta property="og:description" content="Why a bank statement copied from a PDF lands in one column, splits rows or turns amounts into text in Excel, and how to fix each problem.">
+<meta property="og:url" content="https://pdfbridge.app/guides/bank-statement-pdf-excel-one-column/">
+<meta property="og:image" content="https://pdfbridge.app/assets/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bank Statement PDF Pastes Into One Column in Excel? How to Fix It | PDF Bridge">
+<meta name="twitter:description" content="Why a bank statement copied from a PDF lands in one column, splits rows or turns amounts into text in Excel, and how to fix each problem.">
+<meta name="twitter:image" content="https://pdfbridge.app/assets/og/default.jpg">
+<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/fonts/InstrumentSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/InstrumentSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PDF Bridge","item":"https://pdfbridge.app/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://pdfbridge.app/guides/"},{"@type":"ListItem","position":3,"name":"Bank statement pastes into one column in Excel","item":"https://pdfbridge.app/guides/bank-statement-pdf-excel-one-column/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Bank statement pastes into one column in Excel","description":"Why a bank statement copied from a PDF lands in one column, splits rows or turns amounts into text in Excel, and how to fix each problem.","datePublished":"2026-11-26","dateModified":"2026-11-26","mainEntityOfPage":"https://pdfbridge.app/guides/bank-statement-pdf-excel-one-column/","image":"https://pdfbridge.app/assets/og/default.jpg","author":{"@type":"Organization","name":"PDF Bridge","url":"https://pdfbridge.app/about/"},"publisher":{"@type":"Organization","name":"PDF Bridge","url":"https://pdfbridge.app/","logo":{"@type":"ImageObject","url":"https://pdfbridge.app/assets/icon-512.png"}}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="/"><img src="/assets/icon-128.png" alt="" width="32" height="32">PDF Bridge</a>
+  <nav aria-label="Main">
+    <a href="/#tools">Tools</a>
+    <a class="opt" href="/guides/">Guides</a>
+    <a class="opt" href="/bank-statement-to-excel/">Bank statements</a>
+    <a class="opt" href="/#pricing">Pricing</a>
+    <a href="/support/">Support</a>
+    <a class="btn btn-primary" href="/#tools">Try it free</a>
+  </nav>
+</div></header>
+<main id="main"><section class="night page-head"><div class="wrap"><ol class="crumbs"><li><a href="/">PDF Bridge</a></li><li><a href="/guides/">Guides</a></li><li aria-current="page">Bank statement pastes into one column in Excel</li></ol><h1>Bank statement pastes into one column in Excel</h1><p>Why copying a statement out of a PDF goes wrong, and how to fix each of the usual problems.</p><p class="guide-meta">Updated 26 November 2026</p></div></section><div class="doc">
+<p>A PDF doesn't store a table. It stores pieces of text and where to draw them. When you copy from a PDF, you get those pieces in reading order, with spaces or line breaks between them, and Excel has no idea where one column ends and the next begins. Here are the usual symptoms and what to do about each.</p>
+
+<h2>Everything lands in column A</h2>
+<p>Each line of the statement arrives as one cell. You can split it with <strong>Data › Text to Columns</strong> (Delimited, with Space as the delimiter), but descriptions contain spaces too, so a payee like "Northwind Trading Ltd" ends up across three columns and the amounts move with it. It works for very simple statements; for most it is quicker to convert the PDF properly.</p>
+
+<h2>One transaction becomes two or three rows</h2>
+<p>When a description wraps onto a second line in the PDF, the second line arrives as its own row with no date or amount. You have to find each one and join it back. A statement converter keeps the wrapped text with its transaction, which is the main reason to use one.</p>
+
+<h2>Amounts are text, so SUM gives 0</h2>
+<p>Pasted amounts often keep thousands separators, currency symbols, a trailing minus or "CR"/"DR" labels, so Excel treats them as text. Signs of the problem: amounts are left-aligned, a small green triangle appears, or SUM returns 0.</p>
+<ul>
+<li>Remove currency symbols and "CR"/"DR" with Find and Replace.</li>
+<li>Select the column and use the warning menu's <strong>Convert to Number</strong>, or Text to Columns › Finish.</li>
+<li>If your statement uses 1.234,56 style numbers and Excel uses 1,234.56 (or the other way round), set the separators in Text to Columns › Advanced.</li>
+</ul>
+
+<h2>Dates come out wrong</h2>
+<p>A date like 03/04/2026 can mean 3 April or 4 March. If the statement's date order differs from your computer's, Excel either swaps day and month or leaves the date as text. In Text to Columns, set that column to Date and pick the order the statement uses (DMY or MDY).</p>
+
+<h2>Merged cells from a converter</h2>
+<p>Some general PDF converters copy the page's look, so you get merged cells and empty spacer columns. Unmerge everything (Home › Merge &amp; Center › Unmerge Cells), then delete the empty columns. A converter made for statements gives you one plain row per transaction instead.</p>
+<div class="tip"><p>Quick check after any fix: work out each row's balance from the one before it. If every balance matches the statement, nothing was lost.</p></div>
+<div class="guide-cta"><h2>Try it on your own file</h2><p>Skip the cleanup: one row per transaction, amounts as numbers, every balance checked. Try one statement free in your browser.</p><a class="btn btn-primary" href="/bank-statement-to-excel/#try">Open bank statement to Excel</a></div><div class="related"><h2>Related guides</h2><ul class="guide-list"><li><a href="/guides/bank-statement-pdf-to-excel/"><b>How to convert a bank statement PDF to Excel</b></a></li><li><a href="/guides/bank-statement-csv-quickbooks-xero/"><b>Bank statement CSV for QuickBooks and Xero</b></a></li><li><a href="/guides/old-bank-statements-to-excel/"><b>Getting older or PDF-only bank statements into Excel</b></a></li></ul></div></div></main>
+<footer class="site-foot"><div class="wrap">
+  <div class="foot-grid">
+    <div>
+      <a class="foot-brand" href="/"><img src="/assets/icon-128.png" alt="" width="30" height="30" loading="lazy">PDF Bridge</a>
+      <p class="about">PDF to Word and Excel, bank statements, scanning, form filling and ID copies. Try one file free in your browser; the Android and iPhone apps are coming soon. Files are deleted after converting.</p>
+    </div>
+    <div><h2>Tools</h2><ul><li><a href="/bank-statement-to-excel/">Bank statement to Excel</a></li><li><a href="/pdf-to-excel/">PDF to Excel</a></li><li><a href="/pdf-to-word/">PDF to Word</a></li><li><a href="/image-to-text/">Photo to Word (OCR)</a></li><li><a href="/scan-to-pdf/">Scan to PDF</a></li><li><a href="/compress-pdf/">Compress PDF</a></li><li><a href="/fill-sign-pdf/">Fill &amp; sign PDF forms</a></li><li><a href="/id-card-copy/">ID card copy</a></li></ul></div>
+    <div><h2>App</h2><ul><li><a href="/#notify">Android app (coming soon)</a></li><li><a href="/#pricing">Free and Pro</a></li><li><a href="/#faq">Questions</a></li><li><a href="/support/">Support</a></li></ul></div>
+    <div><h2>Legal</h2><ul><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Use</a></li><li><a href="/delete-data/">Delete your data</a></li><li><a href="mailto:support@pdfbridge.app">support@pdfbridge.app</a></li></ul></div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 PDF Bridge. All rights reserved.</span><span>Microsoft Excel and Word are trademarks of Microsoft. PDF Bridge is not affiliated with Microsoft.</span></div>
+</div></footer>
+</body>
+</html>

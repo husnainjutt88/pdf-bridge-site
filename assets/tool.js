@@ -18,7 +18,8 @@
     "pdf-to-word": { accept: ".pdf,application/pdf", files: 1, verb: "Convert to Word", what: "a PDF", out: "Word document" },
     "pdf-to-excel": { accept: ".pdf,application/pdf", files: 1, verb: "Convert to Excel", what: "a PDF", out: "Excel spreadsheet", password: true },
     "bank-statement": { tool: "pdf-to-excel", accept: ".pdf,application/pdf", files: 1, verb: "Convert to Excel", what: "a bank statement PDF", out: "Excel spreadsheet", password: true },
-    "compress-pdf": { accept: ".pdf,application/pdf", files: 1, verb: "Compress PDF", what: "a PDF", out: "smaller PDF", level: true },
+    "compress-pdf": { accept: ".pdf,application/pdf", files: 1, verb: "Compress PDF", what: "a PDF", out: "smaller PDF", level: true,
+      note: "Need an exact limit like 100 KB or 200 KB? That's in the PDF Bridge app, coming soon." },
     "image-to-word": { accept: "image/*,.heic", files: 5, verb: "Get the text", what: "photos or screenshots of text (up to 5)", out: "Word document with the text" },
     "images-to-pdf": { accept: "image/*,.heic", files: 5, verb: "Make a PDF", what: "photos of pages (up to 5)", out: "PDF" },
     "id-copy": { accept: "image/*,.heic", files: 2, verb: "Make the copy", what: "two photos: the front and the back", out: "printable PDF", sides: true },
@@ -247,6 +248,7 @@
       el("p", { class: "kicker", text: "Try it free, right here" }),
       el("h2", { text: "Convert one file free in your browser" }),
       el("p", { class: "try-lead", text: "Choose " + spec.what + " and get " + (/^[aeiou]/i.test(spec.out) ? "an " : "a ") + spec.out + ". No account. Your file is deleted within the hour. One free conversion per computer; the phone apps (coming soon) do more." })]);
+    if (spec.note) head.appendChild(el("p", { class: "try-note", text: spec.note }));
     inner.appendChild(head);
 
     var stage = el("div", { class: "try-stage" });

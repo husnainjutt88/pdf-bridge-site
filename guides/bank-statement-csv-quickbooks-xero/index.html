@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bank Statement to CSV for QuickBooks and Xero: Columns That Import | PDF Bridge</title>
+<meta name="description" content="The CSV layouts QuickBooks Online and Xero accept for bank statement imports, how to turn a PDF statement into one, and the date and amount mistakes that make imports fail.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://pdfbridge.app/guides/bank-statement-csv-quickbooks-xero/">
+<meta name="theme-color" content="#121B48">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PDF Bridge">
+<meta property="og:title" content="Bank Statement to CSV for QuickBooks and Xero: Columns That Import | PDF Bridge">
+<meta property="og:description" content="The CSV layouts QuickBooks Online and Xero accept for bank statement imports, how to turn a PDF statement into one, and the date and amount mistakes that make imports fail.">
+<meta property="og:url" content="https://pdfbridge.app/guides/bank-statement-csv-quickbooks-xero/">
+<meta property="og:image" content="https://pdfbridge.app/assets/og/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bank Statement to CSV for QuickBooks and Xero: Columns That Import | PDF Bridge">
+<meta name="twitter:description" content="The CSV layouts QuickBooks Online and Xero accept for bank statement imports, how to turn a PDF statement into one, and the date and amount mistakes that make imports fail.">
+<meta name="twitter:image" content="https://pdfbridge.app/assets/og/default.jpg">
+<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/fonts/InstrumentSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/InstrumentSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PDF Bridge","item":"https://pdfbridge.app/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://pdfbridge.app/guides/"},{"@type":"ListItem","position":3,"name":"Bank statement CSV for QuickBooks and Xero","item":"https://pdfbridge.app/guides/bank-statement-csv-quickbooks-xero/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Bank statement CSV for QuickBooks and Xero","description":"The CSV layouts QuickBooks Online and Xero accept for bank statement imports, how to turn a PDF statement into one, and the date and amount mistakes that make imports fail.","datePublished":"2026-11-26","dateModified":"2026-11-26","mainEntityOfPage":"https://pdfbridge.app/guides/bank-statement-csv-quickbooks-xero/","image":"https://pdfbridge.app/assets/og/default.jpg","author":{"@type":"Organization","name":"PDF Bridge","url":"https://pdfbridge.app/about/"},"publisher":{"@type":"Organization","name":"PDF Bridge","url":"https://pdfbridge.app/","logo":{"@type":"ImageObject","url":"https://pdfbridge.app/assets/icon-512.png"}}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="/"><img src="/assets/icon-128.png" alt="" width="32" height="32">PDF Bridge</a>
+  <nav aria-label="Main">
+    <a href="/#tools">Tools</a>
+    <a class="opt" href="/guides/">Guides</a>
+    <a class="opt" href="/bank-statement-to-excel/">Bank statements</a>
+    <a class="opt" href="/#pricing">Pricing</a>
+    <a href="/support/">Support</a>
+    <a class="btn btn-primary" href="/#tools">Try it free</a>
+  </nav>
+</div></header>
+<main id="main"><section class="night page-head"><div class="wrap"><ol class="crumbs"><li><a href="/">PDF Bridge</a></li><li><a href="/guides/">Guides</a></li><li aria-current="page">Bank statement CSV for QuickBooks and Xero</li></ol><h1>Bank statement CSV for QuickBooks and Xero</h1><p>The column layouts that import cleanly, and how to get there from a PDF statement.</p><p class="guide-meta">Updated 26 November 2026</p></div></section><div class="doc">
+<p>Bank feeds don't always reach back far enough, and some accounts never connect. Then you import the statement as a file. Both QuickBooks Online and Xero accept CSV, but only in particular layouts.</p>
+
+<h2>QuickBooks Online</h2>
+<p>QuickBooks Online imports a CSV with either three or four columns:</p>
+<div class="table-wrap"><table>
+<tr><th>Layout</th><th>Columns</th></tr>
+<tr><td>3 columns</td><td>Date, Description, Amount (money out as negative numbers)</td></tr>
+<tr><td>4 columns</td><td>Date, Description, Credit, Debit (two separate amount columns)</td></tr>
+</table></div>
+<p>Use one date format throughout, keep a single header row, and remove the opening and closing balance rows and any page totals. Intuit explains the steps in <a href="https://quickbooks.intuit.com/learn-support/en-gb/help-article/import-transactions/convert-pdf-bank-statements-csv-format-quickbooks/L0uvVkT7i_GB_en_GB" rel="noopener">its help article on converting PDF statements</a>. QuickBooks Desktop is different: it imports bank files in its own formats rather than plain CSV.</p>
+
+<h2>Xero</h2>
+<p>Xero's statement import needs at least a <strong>Date</strong> and an <strong>Amount</strong> column (money in positive, money out negative). Payee, Description and Reference columns are optional but make reconciling easier. Xero offers a CSV template on its import screen; copying your rows into it is the safest way.</p>
+
+<h2>From a PDF statement to an import file</h2>
+<ol>
+<li>Convert the statement to Excel with the <a href="/bank-statement-to-excel/">bank statement converter</a> and check that the running balances match.</li>
+<li>Delete everything that isn't a transaction: balance brought forward, totals, headers repeated on each page.</li>
+<li>Arrange the columns for your software (above). For a single Amount column, use a formula like <code>=Credit-Debit</code>.</li>
+<li>Save as <strong>CSV UTF-8</strong> (File › Save As).</li>
+</ol>
+
+<h2>Why imports fail</h2>
+<ul>
+<li><strong>Dates in two formats,</strong> or day and month swapped. Format the whole column the same way.</li>
+<li><strong>Amounts stored as text,</strong> with currency symbols or thousands separators. Make them plain numbers.</li>
+<li><strong>Blank rows or extra header rows</strong> in the middle of the file.</li>
+<li><strong>Overlapping dates</strong> with transactions already imported, which creates duplicates.</li>
+</ul>
+<div class="guide-cta"><h2>Try it on your own file</h2><p>Get the statement into clean rows first: try one conversion free in your browser, with every balance checked.</p><a class="btn btn-primary" href="/bank-statement-to-excel/#try">Open bank statement to Excel</a></div><div class="related"><h2>Related guides</h2><ul class="guide-list"><li><a href="/guides/bank-statement-pdf-to-excel/"><b>How to convert a bank statement PDF to Excel</b></a></li><li><a href="/guides/old-bank-statements-to-excel/"><b>Getting older or PDF-only bank statements into Excel</b></a></li><li><a href="/guides/bank-statement-pdf-excel-one-column/"><b>Bank statement pastes into one column in Excel</b></a></li></ul></div></div></main>
+<footer class="site-foot"><div class="wrap">
+  <div class="foot-grid">
+    <div>
+      <a class="foot-brand" href="/"><img src="/assets/icon-128.png" alt="" width="30" height="30" loading="lazy">PDF Bridge</a>
+      <p class="about">PDF to Word and Excel, bank statements, scanning, form filling and ID copies. Try one file free in your browser; the Android and iPhone apps are coming soon. Files are deleted after converting.</p>
+    </div>
+    <div><h2>Tools</h2><ul><li><a href="/bank-statement-to-excel/">Bank statement to Excel</a></li><li><a href="/pdf-to-excel/">PDF to Excel</a></li><li><a href="/pdf-to-word/">PDF to Word</a></li><li><a href="/image-to-text/">Photo to Word (OCR)</a></li><li><a href="/scan-to-pdf/">Scan to PDF</a></li><li><a href="/compress-pdf/">Compress PDF</a></li><li><a href="/fill-sign-pdf/">Fill &amp; sign PDF forms</a></li><li><a href="/id-card-copy/">ID card copy</a></li></ul></div>
+    <div><h2>App</h2><ul><li><a href="/#notify">Android app (coming soon)</a></li><li><a href="/#pricing">Free and Pro</a></li><li><a href="/#faq">Questions</a></li><li><a href="/support/">Support</a></li></ul></div>
+    <div><h2>Legal</h2><ul><li><a href="/privacy/">Privacy Policy</a></li><li><a href="/terms/">Terms of Use</a></li><li><a href="/delete-data/">Delete your data</a></li><li><a href="mailto:support@pdfbridge.app">support@pdfbridge.app</a></li></ul></div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 PDF Bridge. All rights reserved.</span><span>Microsoft Excel and Word are trademarks of Microsoft. PDF Bridge is not affiliated with Microsoft.</span></div>
+</div></footer>
+</body>
+</html>
