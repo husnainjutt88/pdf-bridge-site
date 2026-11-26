@@ -273,3 +273,52 @@ p { text-wrap: pretty; }
   .store { flex: 1 1 100%; justify-content: center; }
   .facts b { font-size: 22px; }
 }
+
+/* Free try in the browser (assets/tool.js): one conversion on a computer, the app waitlist, feedback */
+.try { padding-top: 72px; scroll-margin-top: 72px; }
+.try-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 36px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px 40px; }
+.try-card > div:first-child { grid-column: 1 / -1; }
+.try-card .kicker { color: var(--blue-deep); }
+@media (prefers-color-scheme: dark) { .try-card .kicker { color: var(--sky); } }
+.try-card h2 { font-size: clamp(26px, 3.2vw, 36px); margin-bottom: 10px; }
+.try-card h3 { font-size: 20px; margin-bottom: 8px; }
+.try-lead { color: var(--muted); margin: 0; max-width: 760px; }
+.try-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 190px; padding: 24px; border: 2px dashed var(--line); border-radius: 16px; background: var(--soft); cursor: pointer; text-align: center; transition: border-color .15s ease, background .15s ease; }
+.try-zone:hover, .try-zone.over { border-color: var(--blue); }
+.try-zone b { font-size: 19px; }
+.try-zone span { color: var(--muted); font-size: 15px; }
+.try-input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.try-input:focus-visible + .try-files, .try-zone:focus-within { outline: 3px solid var(--blue); }
+.try-files { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+.try-files li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 12px; border-radius: 10px; background: var(--soft); font-size: 15px; overflow-wrap: anywhere; }
+.try-x { border: 0; background: none; color: var(--muted); font-size: 22px; line-height: 1; cursor: pointer; padding: 0 4px; }
+.try-options { display: grid; gap: 10px; margin-top: 12px; }
+.try-card input[type=text], .try-card input[type=email], .try-card input[type=password], .try-card select, .try-card textarea {
+  width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 11px 14px; }
+.try-card textarea { resize: vertical; }
+.try-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+.try-row input[type=email] { flex: 1 1 200px; width: auto; }
+.try-row select { flex: 0 0 auto; width: auto; }
+.try-card .btn[disabled] { opacity: .5; cursor: not-allowed; transform: none; }
+.btn-ghost { background: var(--soft); color: var(--ink); border: 1px solid var(--line); }
+.try-error { color: var(--coral-deep); margin: 10px 0 0; min-height: 1em; }
+.try-note { color: var(--muted); font-size: 15px; margin: 8px 0 0; }
+.try-good { color: var(--green); font-weight: 600; margin: 8px 0 0; }
+.try-bar { height: 10px; border-radius: 99px; background: var(--soft); overflow: hidden; margin-top: 12px; }
+.try-bar i { display: block; height: 100%; width: 8%; background: linear-gradient(90deg, var(--blue), var(--blue-deep)); transition: width .6s ease; }
+.try-done { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.try-used { padding: 22px; border-radius: 16px; background: var(--soft); }
+.try-used p { margin: 6px 0 0; color: var(--muted); }
+.try-used .btn { margin-top: 14px; }
+.try-side { display: grid; gap: 22px; align-content: start; }
+.try-wait, .try-feedback { padding: 22px; border-radius: 16px; border: 1px solid var(--line); }
+.try-wait p { margin: 0; color: var(--muted); font-size: 15px; }
+.try-feedback textarea, .try-feedback input { margin-top: 10px; }
+.stars { display: flex; gap: 4px; }
+.star { border: 0; background: none; font-size: 28px; line-height: 1; color: var(--faint); opacity: .45; cursor: pointer; padding: 2px; }
+.star.on { color: var(--gold); opacity: 1; }
+.try-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-height: 460px; overflow: auto; padding-right: 4px; }
+.try-field { display: grid; gap: 4px; font-size: 14px; color: var(--muted); }
+.try-field input[type=checkbox] { width: 20px; height: 20px; }
+.try-robot { position: fixed; bottom: 20px; right: 20px; z-index: 60; }
+@media (max-width: 900px) { .try-card { grid-template-columns: 1fr; padding: 24px; } .try-form { grid-template-columns: 1fr; } }
