@@ -259,13 +259,14 @@
     visitor().then(function (who) {
       return postJSON("/check", { visitor: who });
     }).then(function (state) {
-      if (state.free) picker(); else used(state.message);
+      if (state.free) picker(); else used(state.message, state.reason);
     }).catch(function () { picker(); });
 
-    function used(message) {
+    function used(message, reason) {
       stage.innerHTML = "";
+      var busy = reason === "busy" || reason === "today";
       stage.appendChild(el("div", { class: "try-used" }, [
-        el("h3", { text: "Your free conversion is used" }),
+        el("h3", { text: busy ? "Free conversions are busy right now" : "Your free conversion is used" }),
         el("p", { text: message || "This computer has already used its free conversion." }),
         el("p", { text: "The PDF Bridge apps for Android and iPhone are coming soon, with weekly free conversions. Leave your email beside this and we'll tell you the day they're out." })]));
     }
@@ -370,7 +371,7 @@
     }
 
     function failed(err) {
-      if (err.code === "trial_used") return used(err.message);
+      if (err.code === "trial_used") return used(err.message, err.reason);
       stage.innerHTML = "";
       stage.appendChild(el("div", { class: "try-used" }, [
         el("h3", { text: "That didn't work" }), el("p", { text: err.message }),
