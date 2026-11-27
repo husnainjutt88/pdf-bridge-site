@@ -170,6 +170,13 @@
     return { message: fallback || "Something went wrong. Please try again." };
   }
 
+  // The type a fetched file gets, from the extension the server gave it after checking its content.
+  function fileType(name) {
+    var types = { pdf: "application/pdf", png: "image/png", jpeg: "image/jpeg", jpg: "image/jpeg", webp: "image/webp",
+      tiff: "image/tiff", bmp: "image/bmp", heif: "image/heif", heic: "image/heic" };
+    return types[(name.split(".").pop() || "").toLowerCase()] || "application/octet-stream";
+  }
+
   function postJSON(path, payload) {
     return fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
       .then(function (res) { return res.json().catch(function () { return {}; }).then(function (body) {
@@ -371,6 +378,19 @@
       var error = el("p", { class: "try-error", role: "alert" });
       var go = el("button", { class: "btn btn-primary try-go", type: "button", text: spec.verb + " free" });
 
+      // A link instead of a file: Google Drive, Google Docs, Dropbox or any link straight to the file. The
+      // browser can't download from other sites, so the server fetches it and hands it back like a picked file.
+      var linkInput = el("input", { type: "url", inputmode: "url", autocomplete: "off", spellcheck: "false",
+        id: "try-link-" + key, placeholder: "https://drive.google.com/file/d/…" });
+      var linkGo = el("button", { type: "button", class: "btn btn-ghost", text: "Add file" });
+      var linkBox = el("div", { class: "try-label try-link", hidden: true }, [
+        el("label", { for: "try-link-" + key }, ["Link to the file",
+          el("span", { class: "hint", text: " Google Drive, Google Docs, Dropbox, or any link to the file" })]),
+        el("div", { class: "try-link-row" }, [linkInput, linkGo])]);
+      var linkOpen = el("button", { type: "button", class: "btn-text", text: "Or paste a link to the file",
+        onclick: function () { linkOpen.hidden = true; linkBox.hidden = false; linkInput.focus(); } });
+      var linkArea = el("div", { class: "try-link-area" }, [linkOpen, linkBox]);
+
       function show() {
         list.innerHTML = "";
         chosen.forEach(function (file, i) {
@@ -382,6 +402,7 @@
         });
         var full = chosen.length >= spec.files;
         zone.hidden = full;
+        linkArea.hidden = full;
         zone.classList.toggle("small", chosen.length > 0);
         zoneText.textContent = chosen.length ? (spec.more || "Choose another file") : "Drop " + spec.what + " here";
         options.hidden = !chosen.length;
@@ -398,6 +419,49 @@
         show();
       }
 
+      function fromLink() {
+        var url = linkInput.value.trim();
+        error.textContent = "";
+        if (!/^https?:\/\/\S+$/i.test(url)) {
+          error.textContent = "Paste a link that starts with https://";
+          linkInput.setAttribute("aria-invalid", "true");
+          linkInput.focus();
+          return;
+        }
+        linkInput.removeAttribute("aria-invalid");
+        linkGo.disabled = true;
+        linkGo.textContent = "Getting the file…";
+        visitor().then(function (who) {
+          return fetch(API + "/fetch", { method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ tool: tool, url: url, visitor: who }) });
+        }).then(function (res) {
+          if (!res.ok) {
+            return res.json().catch(function () { return {}; }).then(function (body) {
+              throw problem(body, "We couldn't get the file from that link.");
+            });
+          }
+          var name = "document";
+          try { name = decodeURIComponent(res.headers.get("X-Filename") || "") || name; } catch (e) { /* keep the default */ }
+          return res.blob().then(function (blob) { return new File([blob], name, { type: fileType(name) }); });
+        }, function () {
+          throw { message: "We couldn't reach PDF Bridge. Check your connection and try again." };
+        }).then(function (file) {
+          linkInput.value = "";
+          add([file]);
+          track("link_added", { tool: tool });
+        }, function (err) {
+          error.textContent = (err && err.message) || "We couldn't get the file from that link.";
+          linkInput.setAttribute("aria-invalid", "true");
+          linkInput.focus();
+        }).then(function () {
+          linkGo.disabled = false;
+          linkGo.textContent = "Add file";
+        });
+      }
+
+      linkGo.addEventListener("click", fromLink);
+      linkInput.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); fromLink(); } });
+      linkInput.addEventListener("input", function () { linkInput.removeAttribute("aria-invalid"); });
       input.addEventListener("change", function () { add(input.files); input.value = ""; });
       zone.addEventListener("dragover", function (e) { e.preventDefault(); zone.classList.add("over"); });
       zone.addEventListener("dragleave", function () { zone.classList.remove("over"); });
@@ -413,7 +477,7 @@
         if (level) extra.level = level.value;
         if (spec.form) fields(chosen[0], extra); else send(tool, chosen, extra);
       });
-      stage.append(input, zone, list, hint, options, go, error);
+      stage.append(input, zone, linkArea, list, hint, options, go, error);
       if (spec.note) stage.appendChild(el("p", { class: "try-note", text: spec.note }));
       stage.appendChild(safe());
       show();

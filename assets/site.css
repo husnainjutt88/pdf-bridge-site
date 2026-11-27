@@ -356,13 +356,16 @@ strong, b { font-weight: 600; }
 .try-options:empty { display: none; }
 .try-label { display: grid; gap: 6px; font-size: 14px; font-weight: 500; color: var(--ink); }
 .try-label .hint { font-weight: 400; color: var(--muted); }
-.try-card input[type=text], .try-card input[type=email], .try-card input[type=password], .try-card select, .try-card textarea,
+.try-card input[type=text], .try-card input[type=url], .try-card input[type=email], .try-card input[type=password], .try-card select, .try-card textarea,
 .panel input[type=email], .panel select, .panel textarea {
   width: 100%; min-height: 44px; font: inherit; font-size: 16px; color: var(--ink); background: var(--bg); border: 1px solid var(--line-2); border-radius: var(--r); padding: 10px 12px; }
 .try-card textarea, .panel textarea { resize: vertical; line-height: 1.5; }
 .try-card input:focus, .try-card select:focus, .try-card textarea:focus, .panel input:focus, .panel select:focus, .panel textarea:focus { outline: 2px solid var(--blue); outline-offset: -1px; border-color: transparent; }
 [aria-invalid="true"] { border-color: var(--coral-ink) !important; }
 .try-go { width: 100%; min-height: 48px; }
+.try-link-area { display: grid; }
+.try-link-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+.try-link-row .btn { white-space: nowrap; }
 .try-error { margin: 0; color: var(--coral-ink); font-size: 14px; font-weight: 500; }
 .try-error:empty, .try-note:empty { display: none; }
 .try-note { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
